@@ -54,16 +54,17 @@ gh_release() {
   local REPO=$2
   local OUTPUT=$3
 
-  curl -s https://api.github.com/repos/"${ORG}"/"${REPO}"/releases/latest \
-    | grep browser_download_url \
-    | grep linux \
-    | cut -d '"' -f 4 \
-    | xargs -n 1 curl -o "${OUTPUT}" -L
 }
 
 get_kustomize() {
-  gh_release kubernetes-sigs kustomize kustomize-dl && \
-    tar -xzf kustomize-dl -C /bin && \
+  curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases \
+    | grep browser_download_url \
+    | grep linux \
+    | cut -d '"' -f 4 \
+    | grep /kustomize/v \
+    | sort | tail -n 1 \
+    | xargs -n 1 curl -o kustomize-dl.tgz -L && \
+    tar -xzf kustomize-dl.tgz -C /bin && \
     chmod +x /bin/kustomize
 }
 
