@@ -32,6 +32,7 @@ unified_docker_build() {
     | docker login -u _json_key --password-stdin https://"$(echo "$IMAGEBASE"|cut -f1 -d/)"
   docker pull "$IMAGEBASE:$branch" || true # to reuse some layers built earlier
   docker build "$@" --cache-from "$IMAGEBASE:$branch" \
+                --cache-from "$IMAGEBASE:master" \
                 -t "$IMAGEBASE:$branch" \
                 -t "$IMAGEBASE:$imagetag" \
                 -f "$DOCKER_FILE" "$DOCKER_CONTEXT" || \
