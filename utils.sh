@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 branch=${CI_COMMIT_REF_SLUG:-$(git branch | grep "\*" | cut -d\  -f2)}
 commit_sha=${CI_COMMIT_SHA:-$(git rev-parse HEAD)}
 
