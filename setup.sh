@@ -5,7 +5,7 @@ set -e
 get_kustomize() {
   curl -s https://api.github.com/repos/kubernetes-sigs/kustomize/releases \
     | grep browser_download_url \
-    | grep linux \
+    | grep -E "linux.*amd" \
     | cut -d '"' -f 4 \
     | grep /kustomize/v \
     | sort | tail -n 1 \
