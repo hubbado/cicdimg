@@ -1,0 +1,5 @@
+The intellectual property contained in this software is owned by Hubbado
+Limited but subject to the transfer of ownership provisions set out in contract
+between Hubbado Limited, Shoaib Qureshi, Samuel Stickland and Jay Dalu-Chandu
+and Duncan Stuart dated 12th November 2021. Please refer to either of Duncan
+Stuart or Hubbado Limited for further information.  
