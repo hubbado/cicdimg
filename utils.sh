@@ -2,8 +2,8 @@
 
 set -e
 
-branch=${CI_COMMIT_REF_SLUG:-$(git branch | grep "\*" | cut -d\  -f2)}
-commit_sha=${CI_COMMIT_SHA:-$(git rev-parse HEAD)}
+export branch=${GITHUB_REF_NAME:-$(git branch | grep "\*" | cut -d\  -f2)}
+export commit_sha=${GITHUB_SHA:-$(git rev-parse HEAD)}
 
 get_image_tag() {
   export imagetag="${IMAGETAG:-$branch-$(date +%Y-%m-%d-%H-%M-%z |sed -e 's/+//')-$(echo "$commit_sha"|cut -c1-8)}"
